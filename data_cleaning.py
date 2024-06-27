@@ -13,7 +13,7 @@ df2= df[['Cryptocurrency', 'CAD Price', '1 hour', '24 hours', '7 days', '30 days
 # Group the dataframe by Cryptocurrency and display the mean CAD Price, 1 hour, 24 hours, 7 days, 30 days, 60 days, 90 days values
 df2= df2.groupby('Cryptocurrency')[['CAD Price', '1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']].mean()
 
-Save the dataframe to a csv file
+# Save the dataframe to a csv file
 df2.to_csv('/Users/ek/Desktop/PythonPortfolio/clean_data.csv')
 
 
