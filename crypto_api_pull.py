@@ -3,6 +3,8 @@ from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import pandas as pd
+import os
+import time
 
 # Define a function that will pull the CAD rate from top 20 cryptocurrencies using the coinmarketcap API.
 def api_runner():
@@ -40,3 +42,10 @@ def api_runner():
         df.to_csv('/Users/ek/Desktop/PythonPortfolio/api_extract.csv', header='column_names',index=None)
     else:
         df.to_csv('/Users/ek/Desktop/PythonPortfolio/api_extract.csv', mode='a',header=None, index=None)
+
+# Schedule timer to run Crypto API pull every minute (60s). Due to the API limit, the API can only be called 333 times a day.
+for i in range(333):
+    api_runner()
+    print('Crypto API pull run successfully.')
+    time.sleep(60)
+exit()
