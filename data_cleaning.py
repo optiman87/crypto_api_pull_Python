@@ -13,11 +13,14 @@ df= df.rename(columns={'name': 'Cryptocurrency', 'quote.CAD.price':'CAD Price','
 # Create a new dataframe to store the required columns
 df2= df[['Cryptocurrency', 'CAD Price', '1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']]
 
-# Group the dataframe by Cryptocurrency and CAD Price and display the mean 1 hour, 24 hours, 7 days, 30 days, 60 days, 90 days values
-df2= df2.groupby(['Cryptocurrency','CAD Price'])[['1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']].mean()
+# Group the dataframe by Cryptocurrency and display the mean CAD Price, 1 hour, 24 hours, 7 days, 30 days, 60 days, 90 days values
+df2= df2.groupby('Cryptocurrency')[['CAD Price','1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']].mean()
+
+# Reset index to set Cryptocurrency and CAD Price as index
+df2= df2.reset_index().set_index(['Cryptocurrency', 'CAD Price'])
 
 # Unpivot the columns in the dataframe and store in a new dataframe for visualization
-df3= df2.stack().reset_index()
+df3=df2.stack().reset_index()
 
 # Rename the columns in the new dataframe
 df3= df3.rename(columns= {'level_2': 'Time', 0: 'CAD Percent Change'})
