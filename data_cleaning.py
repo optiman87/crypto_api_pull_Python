@@ -1,7 +1,7 @@
 # Import the required libraries
 import pandas as pd
 
-# Set the float format to 2 decimals
+# Set the display float format to 2 decimals
 pd.options.display.float_format = '{:,.2f}'.format
 
 # Import the extract cvs file into a dataframe
@@ -26,6 +26,6 @@ df3= df3.rename(columns= {'level_2': 'Time', 0: 'CAD Percent Change'})
 df3.info()
 
 # Save the dataframe to a csv file
-df3.to_csv('/Users/ek/Desktop/PythonPortfolio/clean_data.csv', index=False)
+df3.to_csv('/Users/ek/Desktop/PythonPortfolio/clean_data.csv',float_format= '{:,.2f}'.format, index=False)
 
 
