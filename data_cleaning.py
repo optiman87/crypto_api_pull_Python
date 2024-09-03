@@ -11,7 +11,7 @@ df= pd.read_csv('/Users/ek/Desktop/PythonPortfolio/api_extract.csv')
 df= df.rename(columns={'name': 'Cryptocurrency', 'quote.CAD.price':'CAD Price','quote.CAD.percent_change_1h':'1 hour','quote.CAD.percent_change_24h':'24 hours','quote.CAD.percent_change_7d': '7 days','quote.CAD.percent_change_30d':'30 days','quote.CAD.percent_change_60d':'60 days','quote.CAD.percent_change_90d':'90 days'})
 
 # Create a new dataframe to store the required columns
-df2= df[['Cryptocurrency', 'CAD Price', '1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days','TimeStamp']]
+df2= df[['Cryptocurrency', 'CAD Price', '1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']]
 
 # Group the dataframe by Cryptocurrency and display the mean CAD Price, 1 hour, 24 hours, 7 days, 30 days, 60 days, 90 days values
 df2= df2.groupby('Cryptocurrency')[['CAD Price','1 hour', '24 hours', '7 days', '30 days', '60 days', '90 days']].mean()
@@ -24,6 +24,9 @@ df3=df2.stack().reset_index()
 
 # Rename the columns in the new dataframe
 df3= df3.rename(columns= {'level_2': 'Time', 0: 'CAD Percent Change'})
+
+ # Add timestamp to the dataframe
+df['Timestamp']= pd.to_datetime('now')
 
 # Inspect the new dataframe
 df3.info()
