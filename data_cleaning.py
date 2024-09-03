@@ -25,8 +25,8 @@ df3=df2.stack().reset_index()
 # Rename the columns in the new dataframe
 df3= df3.rename(columns= {'level_2': 'Time', 0: 'CAD Percent Change'})
 
- # Add timestamp to the dataframe
-df['Timestamp']= pd.to_datetime('now')
+# Add timestamp to the dataframe
+df3['Timestamp']= pd.to_datetime('now')
 
 # Inspect the new dataframe
 df3.info()
